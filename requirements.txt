@@ -1,2 +1,12 @@
-ipykernel
-python-dotenv
+# Core dependencies
+pandas==2.2.0
+numpy==1.26.4
+
+# NLP & Sentence Embeddings
+sentence-transformers==2.6.1
+nltk==3.8.1
+torch==2.2.0  # Ensure compatibility with Python 3.12
+
+# Visualization
+seaborn==0.13.2
+matplotlib==3.8.3

@@ -1,79 +1,99 @@
-# Data Project Template
+# Business Description Clustering
 
-<a target="_blank" href="https://datalumina.com/">
-    <img src="https://img.shields.io/badge/Datalumina-Project%20Template-2856f7" alt="Datalumina Project" />
-</a>
+This project clusters companies based on their business descriptions using **Sentence Transformers** and **Cosine Similarity**. It helps in identifying similar businesses based on their descriptions.
 
-## Cookiecutter Data Science
-This project template is a simplified version of the [Cookiecutter Data Science](https://cookiecutter-data-science.drivendata.org) template, created to suit the needs of Datalumina and made available as a GitHub template.
+---
 
-## Adjusting .gitignore
+## 📌 Project Overview
+### Steps in the pipeline:
+1. **Load and Preprocess Data**  
+   - Read business descriptions from a CSV file.  
+   - Convert descriptions to lowercase and tokenize them into sentences.
 
-Ensure you adjust the `.gitignore` file according to your project needs. For example, since this is a template, the `/data/` folder is commented out and data will not be exlucded from source control:
+2. **Encode Descriptions Using Sentence Transformers**  
+   - Convert business descriptions into high-dimensional embeddings using `all-mpnet-base-v2`.
 
-```plaintext
-# exclude data from source control by default
-# /data/
+3. **Compute Similarity Scores**  
+   - Compare business descriptions using cosine similarity.
+   - Retrieve the **top 25 most similar companies**.
+
+4. **Filter Non-Similar Companies**  
+   - Exclude companies that match a predefined **non-relevant category** (e.g., loan providers).
+
+5. **Visualize Results**  
+   - Generate a **heatmap** of similarity scores between companies.
+
+6. **Save the Results**  
+   - Store **filtered** and **unfiltered** similarity results in CSV format.
+
+---
+
+## 📂 Project Structure
+```
+business-description-clustering/
+│── data/
+│   ├── raw/                      # Original dataset
+│   │   ├── management_support.csv
+│   ├── results/                   # Final outputs
+│── notebooks/                      # Jupyter notebooks for EDA
+│── src/
+│   ├── data_preprocessing.py       # Data cleaning & processing
+│   ├── embedding.py                # Sentence embedding with transformers
+│   ├── similarity.py               # Similarity search functions
+│   ├── filtering.py                # Filtering non-relevant companies
+│   ├── visualization.py            # Heatmap visualization
+│── main.py                          # Main execution script
+│── requirements.txt                 # Dependencies list
+│── README.md                        # Project documentation
 ```
 
-Typically, you want to exclude this folder if it contains either sensitive data that you do not want to add to version control or large files.
+---
 
-## Duplicating the .env File
-To set up your environment variables, you need to duplicate the `.env.example` file and rename it to `.env`. You can do this manually or using the following terminal command:
-
+## 📦 Dependencies
+This project requires **Python 3.12**. Install the required libraries using:
 ```bash
-cp .env.example .env # Linux, macOS, Git Bash, WSL
-copy .env.example .env # Windows Command Prompt
+pip install -r requirements.txt
 ```
 
-This command creates a copy of `.env.example` and names it `.env`, allowing you to configure your environment variables specific to your setup.
+### Key Libraries:
+- `pandas` → Data processing
+- `numpy` → Numerical operations
+- `sentence-transformers` → Text embeddings
+- `nltk` → Text tokenization
+- `torch` → Deep learning framework
+- `seaborn` → Data visualization
 
+---
 
-## Project Organization
-
+## 🚀 Running the Project
+### 1️⃣ Running via Jupyter Notebook
+Execute the **Jupyter Notebook** step by step:
+```bash
+jupyter notebook
 ```
-├── LICENSE            <- Open-source license if one is chosen
-├── README.md          <- The top-level README for developers using this project
-├── data
-│   ├── external       <- Data from third party sources
-│   ├── interim        <- Intermediate data that has been transformed
-│   ├── processed      <- The final, canonical data sets for modeling
-│   └── raw            <- The original, immutable data dump
-│
-├── models             <- Trained and serialized models, model predictions, or model summaries
-│
-├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-│                         the creator's initials, and a short `-` delimited description, e.g.
-│                         `1.0-jqp-initial-data-exploration`
-│
-├── references         <- Data dictionaries, manuals, and all other explanatory materials
-│
-├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures        <- Generated graphics and figures to be used in reporting
-│
-├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
-│
-└── src                         <- Source code for this project
-    │
-    ├── __init__.py             <- Makes src a Python module
-    │
-    ├── config.py               <- Store useful variables and configuration
-    │
-    ├── dataset.py              <- Scripts to download or generate data
-    │
-    ├── features.py             <- Code to create features for modeling
-    │
-    │    
-    ├── modeling                
-    │   ├── __init__.py 
-    │   ├── predict.py          <- Code to run model inference with trained models          
-    │   └── train.py            <- Code to train models
-    │
-    ├── plots.py                <- Code to create visualizations 
-    │
-    └── services                <- Service classes to connect with external platforms, tools, or APIs
-        └── __init__.py 
+Then, open and run **Business_Description_Clustering.ipynb**.
+
+### 2️⃣ Running via Python Script
+For **command-line execution**, run:
+```bash
+python main.py
 ```
 
---------
+---
+
+## 📊 Example Output
+### 🔹 Sample Similarity Results
+| Company Name      | Business Description                        | Similar Sentence             | Similarity Score |
+|------------------|--------------------------------------------|-----------------------------|------------------|
+| ABC Consulting  | Provides financial advisory services.       | Provides consultancy services. | 0.92            |
+| XYZ Ltd.        | IT solutions and consulting for enterprises. | IT consultancy.              | 0.89            |
+
+### 🔹 Heatmap of Similarity Scores
+A **heatmap** is generated to show the **relationship between similar companies**.
+
+---
+
+## 📜 License
+This project is licensed under the **MIT License**.
+
+---
