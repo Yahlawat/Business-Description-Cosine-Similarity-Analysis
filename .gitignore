@@ -92,5 +92,11 @@ target/
 # Exclude trained models
 /models/
 
+# Exclude notebooks drafts
+/notebooks/drafts/
+
+# exclude drafts folder
+/drafts/
+
 # exclude data from source control by default
 # /data/

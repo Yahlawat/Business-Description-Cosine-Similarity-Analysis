@@ -1,12 +1,26 @@
-# Core dependencies
+# Core Data Processing
 pandas==2.2.0
 numpy==1.26.4
 
-# NLP & Sentence Embeddings
-sentence-transformers==2.6.1
+# Deep Learning & NLP
+torch==2.2.0
+transformers==4.36.2
 nltk==3.8.1
-torch==2.2.0  # Ensure compatibility with Python 3.12
+spacy==3.7.2
 
-# Visualization
+# Data Visualization
 seaborn==0.13.2
 matplotlib==3.8.3
+
+# Jupyter Environment
+jupyter==1.0.0
+notebook==7.0.8
+ipywidgets==8.1.2
+
+# Development Tools
+setuptools==69.0.3
+wheel==0.41.2
+
+# Additional Dependencies
+python-dateutil==2.9.0.post0
+tqdm==4.67.1

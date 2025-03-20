@@ -1,99 +1,83 @@
 # Business Description Clustering
 
-This project clusters companies based on their business descriptions using **Sentence Transformers** and **Cosine Similarity**. It helps in identifying similar businesses based on their descriptions.
+A machine learning pipeline that clusters companies based on their business descriptions using FinBERT embeddings and cosine similarity.
 
----
+## Overview
 
-## 📌 Project Overview
-### Steps in the pipeline:
-1. **Load and Preprocess Data**  
-   - Read business descriptions from a CSV file.  
-   - Convert descriptions to lowercase and tokenize them into sentences.
+This project uses natural language processing to identify similar companies based on their business descriptions. It leverages FinBERT, a financial domain-specific BERT model, to generate high-quality embeddings that capture the semantic meaning of business descriptions.
 
-2. **Encode Descriptions Using Sentence Transformers**  
-   - Convert business descriptions into high-dimensional embeddings using `all-mpnet-base-v2`.
+### Key Features
+- Text preprocessing with case preservation for financial terms
+- Sentence embeddings using FinBERT
+- Business function detection and filtering
+- Similarity scoring with configurable threshold
+- Results export in CSV format
 
-3. **Compute Similarity Scores**  
-   - Compare business descriptions using cosine similarity.
-   - Retrieve the **top 25 most similar companies**.
-
-4. **Filter Non-Similar Companies**  
-   - Exclude companies that match a predefined **non-relevant category** (e.g., loan providers).
-
-5. **Visualize Results**  
-   - Generate a **heatmap** of similarity scores between companies.
-
-6. **Save the Results**  
-   - Store **filtered** and **unfiltered** similarity results in CSV format.
-
----
-
-## 📂 Project Structure
+## Project Structure
 ```
 business-description-clustering/
-│── data/
-│   ├── raw/                      # Original dataset
-│   │   ├── management_support.csv
-│   ├── results/                   # Final outputs
-│── notebooks/                      # Jupyter notebooks for EDA
-│── src/
-│   ├── data_preprocessing.py       # Data cleaning & processing
-│   ├── embedding.py                # Sentence embedding with transformers
-│   ├── similarity.py               # Similarity search functions
-│   ├── filtering.py                # Filtering non-relevant companies
-│   ├── visualization.py            # Heatmap visualization
-│── main.py                          # Main execution script
-│── requirements.txt                 # Dependencies list
-│── README.md                        # Project documentation
+├── data/
+│   ├── raw/              # Original dataset
+│   │   └── management_support.csv
+│   └── results/          # Generated outputs
+│       └── filtered_companies.csv
+├── notebooks/            # Jupyter notebooks
+│   └── Business_Description_FinBERT.ipynb
+├── requirements.txt      # Python dependencies
+├── README.md            # Project documentation
+└── .gitignore           # Git ignore rules
 ```
 
----
+## Installation
 
-## 📦 Dependencies
-This project requires **Python 3.12**. Install the required libraries using:
+1. Create a virtual environment:
+```bash
+python -m venv .venv
+source .venv/bin/activate  # Linux/Mac
+.venv\\Scripts\\activate   # Windows
+```
+
+2. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-### Key Libraries:
-- `pandas` → Data processing
-- `numpy` → Numerical operations
-- `sentence-transformers` → Text embeddings
-- `nltk` → Text tokenization
-- `torch` → Deep learning framework
-- `seaborn` → Data visualization
-
----
-
-## 🚀 Running the Project
-### 1️⃣ Running via Jupyter Notebook
-Execute the **Jupyter Notebook** step by step:
+3. Download spaCy model:
 ```bash
-jupyter notebook
-```
-Then, open and run **Business_Description_Clustering.ipynb**.
-
-### 2️⃣ Running via Python Script
-For **command-line execution**, run:
-```bash
-python main.py
+python -m spacy download en_core_web_sm
 ```
 
----
+## Usage
 
-## 📊 Example Output
-### 🔹 Sample Similarity Results
-| Company Name      | Business Description                        | Similar Sentence             | Similarity Score |
-|------------------|--------------------------------------------|-----------------------------|------------------|
-| ABC Consulting  | Provides financial advisory services.       | Provides consultancy services. | 0.92            |
-| XYZ Ltd.        | IT solutions and consulting for enterprises. | IT consultancy.              | 0.89            |
+1. Place your company data CSV in `data/raw/` with columns:
+   - Company Name
+   - Business Description
 
-### 🔹 Heatmap of Similarity Scores
-A **heatmap** is generated to show the **relationship between similar companies**.
+2. Run the Jupyter notebook:
+```bash
+jupyter notebook notebooks/Business_Description_FinBERT.ipynb
+```
 
----
+3. Results will be saved to `data/results/filtered_companies.csv`
 
-## 📜 License
-This project is licensed under the **MIT License**.
+## Configuration
 
----
+Key parameters in the notebook:
+- `SIMILARITY_THRESHOLD`: Minimum similarity score (default: 0.75)
+- `FUNCTION_KEYWORDS`: Keywords for business function detection
+- `MODEL_NAME`: FinBERT model variant (default: "yiyanghkust/finbert-tone")
+
+## Dependencies
+
+- Python 3.12+
+- PyTorch
+- Transformers (Hugging Face)
+- spaCy
+- pandas
+- NLTK
+
+See `requirements.txt` for complete list with versions.
+
+## License
+
+This project is licensed under the MIT License.
