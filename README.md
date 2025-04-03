@@ -2,7 +2,7 @@
 
 This project implements a natural language processing pipeline to cluster S&P 500 companies based on the semantic content of their business descriptions using SBERT embeddings and hierarchical clustering. The goal is to uncover functionally similar companies by analyzing their descriptions and grouping them according to operational or sector-based characteristics.
 
-![Business Description Clustering using NLP](images/image.png)
+![Business Description Clustering using NLP](https://raw.githubusercontent.com/Yahlawat/Business-Description-Clustering/main/Images/image.png)
 
 ## Features
 
