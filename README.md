@@ -95,10 +95,3 @@ See `requirements.txt` for detailed version information.
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- S&P 500 companies data from Wikipedia
-- Yahoo Finance API for business descriptions
-- Sentence-BERT for semantic embeddings
-- UMAP for dimensionality reduction 
