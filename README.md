@@ -1,4 +1,4 @@
-# Business Description Semantic Search
+# Functional Company Search with SBERT and Cosine Similarity
 
 A machine learning pipeline to retrieve functionally similar companies based on business descriptions using SBERT embeddings and cosine similarity analysis.
 
